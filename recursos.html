@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Video y guía - CogniVida</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="icon" type="image/svg+xml" href="iconos/favicon.svg">
+  <!-- S11 - HU-016 (Luis Cruz): aplica el tamaño de letra guardado -->
+  <script src="js/tamano.js" defer></script>
+  <!-- S11: menú ACME. defer espera a que el HTML esté listo antes de ejecutar el JS -->
+  <script src="js/menu.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ENCABEZADO FIJO: mismo menú que index.html -->
+  <header class="cabecera">
+    <div class="contenedor barra">
+
+      <!-- Marca: regresa al inicio. menu.js también cierra la navegación móvil -->
+      <a class="marca" href="index.html#inicio" aria-label="CogniVida, ir al inicio">
+        <img src="imagenes/logo-mini.png" alt="" width="56" height="56">
+        <span>
+          <strong>CogniVida</strong>
+          <small>Estimulación cognitiva y monitoreo en el hogar</small>
+        </span>
+      </a>
+
+      <!-- MENÚ ACME ADAPTADO (S11). El botón controla la navegación con id="navegacion".
+           Un button ya funciona con clic, toque, Enter y barra espaciadora. -->
+      <button id="boton-menu" class="hamburguesa" type="button"
+              aria-controls="navegacion" aria-expanded="false" aria-label="Abrir menú">
+        <span class="lineas" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span id="texto-menu">Menú</span>
+      </button>
+
+      <nav id="navegacion" class="navegacion" aria-label="Navegación principal">
+        <!-- Lista horizontal en escritorio y vertical en celular -->
+        <ul class="menu">
+          <li><a href="index.html#inicio">Inicio</a></li>
+          <li><a href="index.html#nosotros">Quiénes somos</a></li>
+          <li><a href="index.html#servicios">Servicios</a></li>
+          <li><a href="index.html#proyectos">Proyectos</a></li>
+          <li><a href="index.html#galeria">Galería</a></li>
+          <li><a href="index.html#testimonios">Testimonios</a></li>
+          <li><a href="recursos.html" aria-current="page">Video y guía</a></li>
+          <li>
+            <!-- details y summary abren el submenú vertical sin programar otro botón -->
+            <details id="probar" class="desplegable">
+              <summary>Probar</summary>
+              <ul class="submenu">
+                <li><a href="index.html#orientador">Elegir un ejercicio</a></li>
+                <li><a href="index.html#ejercicio">Hacer el ejercicio</a></li>
+                <li><a href="index.html#tamano">Ajustar el tamaño</a></li>
+                <li><a href="index.html#medicamentos">Confirmar medicamento</a></li>
+                <li><a href="index.html#contacto">Pedir apoyo</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="recursos" class="seccion" tabindex="-1">
+    <div class="contenedor">
+
+      <h1>Video y guía de uso</h1>
+
+      <!-- Video y texto en dos columnas -->
+      <div class="dos-columnas">
+
+        <!-- Video local del proyecto. Para usar YouTube, reemplaza este bloque por:
+             <iframe class="video" src="https://www.youtube.com/embed/CODIGO"
+                     title="Descripción del video" allowfullscreen></iframe> -->
+        <video class="video" src="videos/presentacion.mp4" controls>
+          Tu navegador no soporta la reproducción de video.
+        </video>
+
+        <div>
+          <h2>¿Cómo funciona CogniVida?</h2>
+          <p>
+            El video presenta la propuesta del equipo: el adulto mayor realiza
+            micro-ejercicios desde su tablet, el cuidador familiar recibe alertas
+            y confirma medicamentos desde su celular, y el profesional de la salud
+            revisa la evolución cognitiva en un dashboard clínico.
+          </p>
+          <ol class="pasos">
+            <li>Elige un ejercicio de memoria, atención u orientación.</li>
+            <li>Ajusta el tamaño de la letra si lo necesitas.</li>
+            <li>El cuidador confirma la toma de medicamentos.</li>
+            <li>Si necesitas ayuda, envía una solicitud de apoyo.</li>
+          </ol>
+          <p class="credito">
+            Crédito: video de presentación elaborado por el equipo CogniVida
+            (UPC, HCI for UX Design, 2026).
+          </p>
+          <p>
+            ¿No se reproduce?
+            <a href="videos/presentacion.mp4">Abrir el video en otra pestaña</a>.
+          </p>
+          <p><a class="boton" href="index.html#orientador">Probar un ejercicio</a></p>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <h2>Contacto y redes sociales</h2>
+      <p>Correo: contacto@cognivida.pe</p>
+      <p class="redes">
+        <a href="https://www.facebook.com/" aria-label="Facebook"><img src="iconos/facebook.svg" alt="" width="40" height="40"></a>
+        <a href="https://www.instagram.com/" aria-label="Instagram"><img src="iconos/instagram.svg" alt="" width="40" height="40"></a>
+        <a href="https://www.youtube.com/" aria-label="YouTube"><img src="iconos/youtube.svg" alt="" width="40" height="40"></a>
+      </p>
+      <p>&copy; 2026 CogniVida. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

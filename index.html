@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>CogniVida - ODS 3 Salud y Bienestar</title>
+  <!-- PASO 1: conectar la hoja de estilos y el favicon -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="icon" type="image/svg+xml" href="iconos/favicon.svg">
+  <!-- S11: menú ACME. defer espera a que el HTML esté listo antes de ejecutar el JS -->
+  <script src="js/menu.js" defer></script>
+  <!-- S11 - HU-005 (Saúl Mamani): recordatorio de actividad -->
+  <script src="js/recordatorio.js" defer></script>
+  <!-- S11 - HU-012 (Loy Abendaño): escuchar instrucciones -->
+  <script src="js/voz.js" defer></script>
+  <!-- S11 - HU-014 (Paulo Arana): retroalimentación del ejercicio -->
+  <script src="js/resultado.js" defer></script>
+  <!-- S11 - HU-016 (Luis Cruz): tamaño de los elementos -->
+  <script src="js/tamano.js" defer></script>
+  <!-- S11 - HU-027 (Erick Ticlla): confirmar toma de medicamento -->
+  <script src="js/medicamento.js" defer></script>
+  <!-- S11 - HU-008 (Fabrizio Aguirre): solicitar apoyo -->
+  <script src="js/apoyo.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ENCABEZADO FIJO (Estructura e integración: Saúl Mamani - Team Leader) -->
+  <header class="cabecera">
+    <div class="contenedor barra">
+
+      <!-- Marca: regresa al inicio. menu.js también cierra la navegación móvil -->
+      <a class="marca" href="#inicio" aria-label="CogniVida, ir al inicio">
+        <img src="imagenes/logo-mini.png" alt="" width="56" height="56">
+        <span>
+          <strong>CogniVida</strong>
+          <small>Estimulación cognitiva y monitoreo en el hogar</small>
+        </span>
+      </a>
+
+      <!-- MENÚ ACME ADAPTADO (S11). El botón controla la navegación con id="navegacion".
+           Un button ya funciona con clic, toque, Enter y barra espaciadora. -->
+      <button id="boton-menu" class="hamburguesa" type="button"
+              aria-controls="navegacion" aria-expanded="false" aria-label="Abrir menú">
+        <span class="lineas" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span id="texto-menu">Menú</span>
+      </button>
+
+      <nav id="navegacion" class="navegacion" aria-label="Navegación principal">
+        <!-- Lista horizontal en escritorio y vertical en celular -->
+        <ul class="menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Quiénes somos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="recursos.html">Video y guía</a></li>
+          <li>
+            <!-- details y summary abren el submenú vertical sin programar otro botón -->
+            <details id="probar" class="desplegable">
+              <summary>Probar</summary>
+              <ul class="submenu">
+                <li><a href="#orientador">Elegir un ejercicio</a></li>
+                <li><a href="#ejercicio">Hacer el ejercicio</a></li>
+                <li><a href="#tamano">Ajustar el tamaño</a></li>
+                <li><a href="#medicamentos">Confirmar medicamento</a></li>
+                <li><a href="#contacto">Pedir apoyo</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+
+    <!-- PRESENTACIÓN: imagen y texto en dos columnas -->
+    <section id="inicio" tabindex="-1" class="hero" aria-labelledby="titulo-inicio">
+
+      <!-- S11 - HU-005: banner de recordatorio (oculto al inicio, lo muestra recordatorio.js).
+           role="alert" hace que el lector de pantalla lo anuncie cuando aparece. -->
+      <div id="banner-actividad" class="banner-recordatorio" role="alert">
+        <div class="contenedor banner-contenido">
+          <p><strong>Es hora de tu actividad:</strong> Memoria visual - 10:00 a. m.</p>
+          <div class="banner-acciones">
+            <a href="#orientador" id="btn-ver-actividad" class="boton">Ver actividad</a>
+            <button type="button" id="btn-cerrar-banner" class="boton secundario">Cerrar</button>
+          </div>
+        </div>
+      </div>
+      <div class="contenedor dos-columnas">
+        <div>
+          <p class="etiqueta">ODS 3 · Salud y Bienestar</p>
+          <h1 id="titulo-inicio">Bienvenidos a CogniVida</h1>
+          <p>
+            Somos una plataforma web SaaS alineada con el
+            ODS 3: Salud y Bienestar. Acompañamos a adultos
+            mayores con Deterioro Cognitivo Leve (DCL), a sus
+            cuidadores familiares y a los profesionales de la
+            salud mediante ejercicios de estimulación cerebral,
+            alertas tempranas y reportes de evolución.
+          </p>
+          <p class="acciones">
+            <a class="boton" href="#orientador">Probar un ejercicio</a>
+            <a class="boton secundario" href="recursos.html">Ver video y guía</a>
+          </p>
+        </div>
+        <img class="foto" src="imagenes/servicios.jpg"
+             alt="Adulto mayor realizando ejercicios cognitivos en una tablet">
+      </div>
+    </section>
+
+    <!-- QUIÉNES SOMOS (Saúl Mamani) -->
+    <section id="nosotros" tabindex="-1" class="seccion">
+      <div class="contenedor">
+
+        <h2>Quiénes somos</h2>
+
+        <p>
+          Somos un startup peruano que diseña soluciones digitales
+          accesibles para reducir el impacto del Deterioro Cognitivo
+          Leve y la sobrecarga de los cuidadores familiares.
+        </p>
+
+        <div class="tarjetas dos">
+          <article class="tarjeta">
+            <h3>Nuestra misión</h3>
+            <p>
+              Brindar soluciones tecnológicas innovadoras y accesibles de
+              estimulación cognitiva y monitoreo en el hogar, promoviendo la
+              autonomía del adulto mayor con Deterioro Cognitivo Leve y
+              reduciendo la sobrecarga de cuidado en sus familias.
+            </p>
+          </article>
+          <article class="tarjeta">
+            <h3>Nuestra visión</h3>
+            <p>
+              Ser el startup referente en el Perú y Latinoamérica en el
+              desarrollo de soluciones digitales de salud y bienestar para
+              la tercera edad.
+            </p>
+          </article>
+        </div>
+
+        <img class="foto-equipo" src="imagenes/nosotros.png"
+             alt="Integrantes del equipo CogniVida: Saul Mamani, Luis Cruz, Loy Berry, Erick Ticlla, Lenin Aguirre y Paulo Arana">
+
+      </div>
+    </section>
+
+    <!-- SERVICIOS: tarjetas en tres columnas -->
+    <section id="servicios" tabindex="-1" class="seccion fondo">
+      <div class="contenedor">
+
+        <h2>Servicios</h2>
+
+        <p>
+          Ofrecemos un módulo diferente para cada usuario, con
+          interfaces de alta accesibilidad y baja carga cognitiva.
+        </p>
+
+        <ul class="tarjetas">
+          <li class="tarjeta"><h3>Micro-ejercicios</h3><p>Ejercicios de memoria, atención y orientación para el adulto mayor.</p><span class="chip">Adulto mayor</span></li>
+          <li class="tarjeta"><h3>Rutina diaria</h3><p>Rutina diaria con recordatorios y lectura en voz alta.</p><span class="chip">Adulto mayor</span></li>
+          <li class="tarjeta"><h3>Panel del cuidador</h3><p>Panel móvil del cuidador con alertas de omisión y botón de ayuda.</p><span class="chip">Cuidador familiar</span></li>
+          <li class="tarjeta"><h3>Bitácora de medicamentos</h3><p>Bitácora de medicamentos compartida entre familiares.</p><span class="chip">Cuidador familiar</span></li>
+          <li class="tarjeta"><h3>Dashboard clínico</h3><p>Dashboard clínico con gráficos longitudinales y reportes PDF.</p><span class="chip">Profesional de la salud</span></li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- HU-013 Seleccionar una actividad cognitiva (Paulo Arana)
+         Los radios y .resultados deben tener el MISMO padre (fieldset) -->
+    <section id="orientador" tabindex="-1" class="seccion">
+      <div class="contenedor">
+
+        <h2>Prueba: elige un ejercicio</h2>
+        <p class="hu">HU-013 · Seleccionar una actividad cognitiva</p>
+        <p>Toca una opción para ver en qué consiste el ejercicio y su nivel sugerido.</p>
+
+        <fieldset class="orientador">
+          <legend>¿Qué quieres entrenar hoy?</legend>
+
+          <input type="radio" id="memoria" name="ejercicio">
+          <label for="memoria">Memoria visual</label>
+
+          <input type="radio" id="atencion" name="ejercicio">
+          <label for="atencion">Atención</label>
+
+          <input type="radio" id="orientacion" name="ejercicio">
+          <label for="orientacion">Orientación</label>
+
+          <div class="resultados">
+            <p class="pista">Aún no eliges un ejercicio.</p>
+            <div class="respuesta memoria">
+              <h3>Memoria visual <span class="chip facil">Fácil</span></h3>
+              <p>Observa 4 tarjetas durante el tiempo que necesites y luego encuentra las parejas. Sin cronómetro ni penalidades.</p>
+              <a class="boton" href="#tamano">Ajustar la letra antes de empezar</a>
+            </div>
+            <div class="respuesta atencion">
+              <h3>Atención <span class="chip medio">Medio</span></h3>
+              <p>Toca solo las figuras azules que aparecen entre otras de distinto color. Las instrucciones se pueden escuchar en voz alta.</p>
+              <a class="boton" href="#tamano">Ajustar la letra antes de empezar</a>
+            </div>
+            <div class="respuesta orientacion">
+              <h3>Orientación <span class="chip facil">Fácil</span></h3>
+              <p>Responde preguntas sencillas sobre el día, la fecha y tu rutina, con apoyo de imágenes y lectura en voz alta.</p>
+              <a class="boton" href="#tamano">Ajustar la letra antes de empezar</a>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- S11 - HU-012 Escuchar instrucciones de la actividad (Loy Abendaño)
+             Lee en voz alta las instrucciones del ejercicio elegido arriba. -->
+        <div id="pantalla-am10" class="audio-instrucciones">
+          <button type="button" id="btn-escuchar" class="boton boton-audio">
+            <span aria-hidden="true">🔊</span>
+            <span id="texto-btn-audio">Escuchar instrucciones</span>
+          </button>
+          <button type="button" id="btn-siguiente" class="boton secundario">Comenzar ejercicio</button>
+          <p id="aviso-voz" class="aviso" hidden>Tu navegador no puede leer las instrucciones en voz alta. Puedes leerlas en el recuadro de arriba.</p>
+        </div>
+
+        <p class="limite">Simulación: el nivel mostrado es un ejemplo fijo; no se guarda tu elección. La voz depende del navegador.</p>
+
+      </div>
+    </section>
+
+    <!-- S11 - HU-014 Recibir retroalimentación al finalizar un ejercicio (Paulo Arana) -->
+    <section id="ejercicio" tabindex="-1" class="seccion fondo">
+      <div class="contenedor">
+
+        <h2>Prueba: ejercicio de orientación</h2>
+        <p class="hu">HU-014 · Recibir retroalimentación al finalizar un ejercicio</p>
+        <p>Responde con calma: no hay límite de tiempo.</p>
+
+        <!-- Cuestionario: cada fieldset es una pregunta; data-correcta guarda la respuesta -->
+        <div id="cuestionario" class="tarjeta cuestionario">
+          <fieldset class="pregunta" id="pregunta-dia">
+            <legend>1. ¿Qué día de la semana es hoy?</legend>
+            <!-- resultado.js crea estas opciones con el día real del dispositivo -->
+            <div class="opciones" id="opciones-dia"></div>
+          </fieldset>
+
+          <fieldset class="pregunta" data-correcta="peru">
+            <legend>2. ¿En qué país vives?</legend>
+            <div class="opciones">
+              <input type="radio" id="p2-peru" name="p2" value="peru"><label for="p2-peru">Perú</label>
+              <input type="radio" id="p2-chile" name="p2" value="chile"><label for="p2-chile">Chile</label>
+              <input type="radio" id="p2-mexico" name="p2" value="mexico"><label for="p2-mexico">México</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="pregunta" data-correcta="desayuno">
+            <legend>3. ¿Qué comida se toma en la mañana?</legend>
+            <div class="opciones">
+              <input type="radio" id="p3-cena" name="p3" value="cena"><label for="p3-cena">Cena</label>
+              <input type="radio" id="p3-desayuno" name="p3" value="desayuno"><label for="p3-desayuno">Desayuno</label>
+              <input type="radio" id="p3-almuerzo" name="p3" value="almuerzo"><label for="p3-almuerzo">Almuerzo</label>
+            </div>
+          </fieldset>
+
+          <p id="aviso-ejercicio" class="aviso" role="alert" hidden></p>
+          <button type="button" id="btn-terminar" class="boton">Terminar</button>
+        </div>
+
+        <!-- Panel de resultado (AM-07): oculto hasta presionar Terminar -->
+        <div id="resultado-ejercicio" class="tarjeta resultado" tabindex="-1" hidden>
+          <p class="medalla" aria-hidden="true">🏅</p>
+          <h3>¡Actividad completada!</h3>
+          <p id="mensaje-felicitacion"></p>
+          <p class="puntaje"><span id="aciertos">0</span> de <span id="total-preguntas">3</span> aciertos</p>
+          <div class="barra-progreso" id="barra-progreso" role="progressbar"
+               aria-label="Aciertos" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0">
+            <span id="barra-relleno"></span>
+          </div>
+          <p id="resumen-dia"></p>
+          <p class="acciones">
+            <button type="button" id="btn-continuar" class="boton">Continuar</button>
+            <a id="btn-volver-inicio" class="boton secundario" href="#inicio">Volver al inicio</a>
+          </p>
+        </div>
+
+        <p class="limite">Simulación: las respuestas no se guardan; el resumen del día solo cuenta los intentos de esta visita.</p>
+
+      </div>
+    </section>
+
+    <!-- HU-016 Personalizar el tamaño de los elementos (Luis Cruz) -->
+    <section id="tamano" tabindex="-1" class="seccion fondo">
+      <div class="contenedor">
+
+        <h2>Prueba: ajusta el tamaño de la letra</h2>
+        <p class="hu">HU-016 · Personalizar el tamaño de los elementos</p>
+
+        <fieldset class="selector-tamano">
+          <legend>Tamaño del texto</legend>
+
+          <input type="radio" id="tam-pequeno" name="tamano">
+          <label for="tam-pequeno">Pequeño</label>
+
+          <input type="radio" id="tam-normal" name="tamano" checked>
+          <label for="tam-normal">Normal</label>
+
+          <input type="radio" id="tam-grande" name="tamano">
+          <label for="tam-grande">Grande</label>
+
+          <div class="vista-previa">
+            <p><strong>Vista previa:</strong> Hoy tienes 2 actividades pendientes: «Memoria visual» a las 10:00 y «Caminata corta» a las 16:00.</p>
+          </div>
+        </fieldset>
+
+        <!-- S11 - HU-016: JS aplica el tamaño a toda la página y lo recuerda -->
+        <p class="acciones">
+          <button type="button" id="btn-guardar-tamano" class="boton">Guardar cambios</button>
+          <button type="button" id="btn-restablecer-tamano" class="boton secundario">Restablecer</button>
+        </p>
+        <p id="mensaje-tamano" class="mensaje-estado" role="status"></p>
+
+        <p class="limite">Simulación: la preferencia se guarda solo en este navegador (localStorage).</p>
+
+      </div>
+    </section>
+
+    <!-- HU-027 Registro de la bitácora de medicamentos (Erick Ticlla) -->
+    <section id="medicamentos" tabindex="-1" class="seccion">
+      <div class="contenedor">
+
+        <h2>Prueba: confirma una toma de medicamento</h2>
+        <p class="hu">HU-027 · Registro y programación de la bitácora de medicamentos</p>
+
+        <!-- S11 - HU-027: el checkbox de S10 se reemplaza por un botón y un dialog -->
+        <div class="bitacora">
+          <div class="tarjeta medicamento" id="tarjeta-medicamento">
+            <h3>Próxima toma: Donepezilo 5 mg</h3>
+            <p>Horario programado: 08:00 a. m. · 1 tableta con el desayuno.</p>
+            <p><a href="#bitacora-hoy">Ver bitácora de medicamentos</a></p>
+            <p id="estado-medicamento" class="estado estado-pendiente">Pendiente de confirmar</p>
+            <button type="button" id="btn-confirmar-toma" class="boton">Confirmar toma administrada</button>
+            <p id="mensaje-sincronizacion" class="mensaje-estado" role="status"></p>
+          </div>
+
+          <h3 id="bitacora-hoy" tabindex="-1">Bitácora de hoy</h3>
+          <ul id="historial-tomas" class="historial">
+            <li class="vacio">Aún no hay tomas registradas.</li>
+          </ul>
+        </div>
+
+        <!-- Ventana de confirmación (overlay M4). dialog también se cierra con Escape -->
+        <dialog id="dialogo-toma" class="dialogo" aria-labelledby="titulo-dialogo">
+          <h3 id="titulo-dialogo">Confirmar medicación administrada</h3>
+          <dl class="detalle-toma">
+            <dt>Medicamento</dt><dd>Donepezilo</dd>
+            <dt>Dosis</dt><dd>5 mg · 1 tableta</dd>
+            <dt>Hora actual</dt><dd id="hora-toma">--:--</dd>
+          </dl>
+          <p class="acciones">
+            <button type="button" id="btn-dialogo-confirmar" class="boton">Confirmar</button>
+            <button type="button" id="btn-dialogo-cancelar" class="boton secundario">Cancelar</button>
+          </p>
+        </dialog>
+
+        <p class="limite">Simulación: el medicamento es ficticio y la confirmación no se guarda ni se envía.</p>
+
+      </div>
+    </section>
+
+    <!-- PROYECTOS (Paulo Arana) -->
+    <section id="proyectos" tabindex="-1" class="seccion fondo">
+      <div class="contenedor dos-columnas">
+
+        <img class="foto" src="imagenes/proyectos.png"
+             alt="Profesional de la salud revisando el progreso de un paciente">
+
+        <div>
+          <h2>Proyectos</h2>
+
+          <p>
+            Nuestros proyectos contribuyen a la meta del ODS 3 de
+            garantizar una vida sana y promover el bienestar de todas
+            las personas en todas las edades.
+          </p>
+
+          <h3>Mente Activa en Casa</h3>
+          <p>
+            Programa de estimulación cognitiva diaria basado en el
+            modelo preventivo LatAm-FINGERS, sin límites de tiempo
+            punitivos para el adulto mayor.
+          </p>
+
+          <h3>Cuidador Conectado</h3>
+          <p>
+            Red de apoyo familiar que comparte turnos, rutinas y
+            medicamentos para reducir la sobrecarga del cuidador.
+          </p>
+
+          <h3>Seguimiento Clínico Digital</h3>
+          <p>
+            Reportes de evolución para centros de atención primaria que
+            facilitan la detección temprana de declive cognitivo.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GALERÍA (Luis Cruz) -->
+    <section id="galeria" tabindex="-1" class="seccion">
+      <div class="contenedor">
+
+        <h2>Galería</h2>
+
+        <p>Conoce cómo se ve CogniVida en cada dispositivo.</p>
+
+        <div class="galeria">
+          <figure>
+            <img src="imagenes/m1.png" alt="Módulo del adulto mayor en tablet">
+            <figcaption>Módulo del adulto mayor</figcaption>
+          </figure>
+          <figure>
+            <img src="imagenes/m2.png" alt="Panel del cuidador familiar en celular">
+            <figcaption>Panel del cuidador familiar</figcaption>
+          </figure>
+          <figure>
+            <img src="imagenes/m3.png" alt="Dashboard clínico del profesional de la salud">
+            <figcaption>Dashboard clínico</figcaption>
+          </figure>
+        </div>
+
+        <p><a class="boton secundario" href="recursos.html">Ver el video de presentación</a></p>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS (Erick Ticlla) -->
+    <section id="testimonios" tabindex="-1" class="seccion fondo">
+      <div class="contenedor">
+
+        <h2>Testimonios</h2>
+
+        <p>Lo que dicen nuestros usuarios durante las entrevistas:</p>
+
+        <div class="tarjetas">
+          <blockquote class="tarjeta">
+            <p>"Ahora hago mis ejercicios sola y con letras grandes, sin que nadie me apure."</p>
+            <p>— Elena, adulta mayor, 72 años</p>
+          </blockquote>
+
+          <blockquote class="tarjeta">
+            <p>"Recibo una alerta si mi mamá no hizo su rutina y ya no dependo de notas en papel para sus medicinas."</p>
+            <p>— Carmen, cuidadora familiar</p>
+          </blockquote>
+
+          <blockquote class="tarjeta">
+            <p>"El gráfico de evolución me da datos objetivos para ajustar el tratamiento en la consulta."</p>
+            <p>— Dr. Ramírez, médico de atención primaria</p>
+          </blockquote>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTÁCTANOS + HU-008 Solicitar apoyo a mi cuidador (Fabrizio Aguirre)
+         Los campos no llevan name: no se agregan datos a la URL -->
+    <section id="contacto" tabindex="-1" class="seccion">
+      <div class="contenedor dos-columnas">
+
+        <div>
+          <h2>Contáctanos</h2>
+          <p class="hu">HU-008 · Solicitar apoyo a mi cuidador</p>
+          <p>Lima, Perú</p>
+          <p>Teléfono: (01) 555-0123</p>
+          <p>Correo: contacto@cognivida.pe</p>
+
+          <!-- S11 - HU-008 Solicitar apoyo a mi cuidador (Fabrizio Aguirre) -->
+          <div id="contenedor-apoyo" class="apoyo-accesible">
+            <!-- Botón inicial -->
+            <button type="button" id="btn-solicitar-apoyo" class="btn-accesible btn-primario">Solicitar apoyo</button>
+
+            <!-- Panel de confirmación oculto por defecto -->
+            <div id="panel-apoyo" class="oculto" aria-live="polite">
+              <p id="mensaje-apoyo" class="texto-grande">
+                ¿Pedir ayuda a <strong>Diego</strong> con la actividad <strong>Memoria visual</strong>?
+              </p>
+
+              <div id="acciones-apoyo" class="grupo-botones">
+                <button type="button" id="btn-enviar-solicitud" class="btn-accesible btn-primario">Enviar solicitud</button>
+                <button type="button" id="btn-cancelar-apoyo" class="btn-accesible btn-secundario">Cancelar</button>
+              </div>
+
+              <!-- Casilla para demostrar el CA03 sin desconectar el equipo -->
+              <p class="simular">
+                <input type="checkbox" id="simular-sin-conexion">
+                <label for="simular-sin-conexion">Simular sin conexión (prueba del CA03)</label>
+              </p>
+            </div>
+          </div>
+
+          <p class="limite">Simulación: el formulario no envía ni guarda datos. Al completarlo verás una pantalla de confirmación de ejemplo.</p>
+        </div>
+
+        <form class="formulario" action="confirmacion.html" method="get">
+
+          <p>
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" required>
+          </p>
+
+          <p>
+            <label for="correo">Correo del cuidador</label>
+            <input type="email" id="correo" required>
+          </p>
+
+          <p>
+            <label for="perfil">Soy</label>
+            <select id="perfil" required>
+              <option value="">Selecciona una opción</option>
+              <option value="adulto">Adulto mayor</option>
+              <option value="cuidador">Cuidador familiar</option>
+              <option value="medico">Profesional de la salud</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="mensaje">¿En qué necesitas apoyo?</label>
+            <textarea id="mensaje" rows="4" minlength="15" required></textarea>
+          </p>
+
+          <p>
+            <button class="boton" type="submit">Enviar solicitud</button>
+          </p>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie">
+    <div class="contenedor">
+
+      <h2>Contacto y redes sociales</h2>
+
+      <p>Correo: contacto@cognivida.pe</p>
+
+      <p class="redes">
+        <a href="https://www.facebook.com/" aria-label="Facebook">
+          <img src="iconos/facebook.svg" alt="" width="40" height="40">
+        </a>
+        <a href="https://www.instagram.com/" aria-label="Instagram">
+          <img src="iconos/instagram.svg" alt="" width="40" height="40">
+        </a>
+        <a href="https://www.youtube.com/" aria-label="YouTube">
+          <img src="iconos/youtube.svg" alt="" width="40" height="40">
+        </a>
+      </p>
+
+      <p>
+        &copy; 2026 CogniVida.
+        Todos los derechos reservados.
+      </p>
+
+    </div>
+  </footer>
+
+</body>
+</html>
